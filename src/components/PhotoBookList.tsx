@@ -23,11 +23,11 @@ export default function PhotoBookList({
 }: PhotoBookListProps) {
   return (
     <div
-      className="w-full bg-[#0A0A0A] text-white py-16 sm:py-24"
+      className="w-full bg-[#0A0A0A] text-white py-12 sm:py-20"
       data-testid="photobook-list-screen"
     >
       {/* Editorial Catalog Introduction */}
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28 text-left">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 mb-12 sm:mb-20 text-left">
         <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-white">
           Monographs
         </h2>
@@ -66,7 +66,7 @@ export default function PhotoBookList({
           </p>
         </div>
       ) : (
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 space-y-36 sm:space-y-48">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 space-y-24 sm:space-y-36">
           {books.map((book) => (
             <article
               key={book.id}

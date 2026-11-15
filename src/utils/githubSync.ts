@@ -101,10 +101,16 @@ export function detectDefaultGitHubRepo(): string {
       return `${owner}/${repo}`;
     }
   }
-  return (
-    (import.meta as any).env?.VITE_GITHUB_REPO ||
-    'jwygallery/photo'
-  );
+  const envRepo = (import.meta as any).env?.VITE_GITHUB_REPO;
+  if (
+    envRepo &&
+    envRepo !== 'iamcoolkorean/jwy-photobook' &&
+    envRepo !== 'iamcoolkorean/jwyphotobook' &&
+    envRepo !== 'iamcoolkorean/photobook'
+  ) {
+    return envRepo;
+  }
+  return 'jwygallery/photo';
 }
 
 

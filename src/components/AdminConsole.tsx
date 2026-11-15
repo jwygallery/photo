@@ -93,15 +93,13 @@ export default function AdminConsole({
       if (
         saved &&
         saved !== 'iamcoolkorean/jwy-photobook' &&
-        saved !== 'iamcoolkorean/jwyphotobook'
+        saved !== 'iamcoolkorean/jwyphotobook' &&
+        saved !== 'iamcoolkorean/photobook'
       ) {
         return saved;
       }
     } catch (_) {}
-    return (
-      (import.meta as any).env?.VITE_GITHUB_REPO ||
-      detectDefaultGitHubRepo()
-    );
+    return detectDefaultGitHubRepo();
   });
   const [githubBranch, setGithubBranch] = useState<string>(() => {
     return (

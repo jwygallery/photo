@@ -285,10 +285,11 @@ export default function App() {
           localStorage.getItem('jwy_gh_repo') ||
           detectDefaultGitHubRepo();
 
-        // Self-heal: correct legacy repo string if present in browser localStorage
+        // Self-heal: correct legacy repo string if present in browser localStorage or env
         if (
           repoStr === 'iamcoolkorean/jwy-photobook' ||
-          repoStr === 'iamcoolkorean/jwyphotobook'
+          repoStr === 'iamcoolkorean/jwyphotobook' ||
+          repoStr === 'iamcoolkorean/photobook'
         ) {
           repoStr = 'jwygallery/photo';
           try {
@@ -323,8 +324,10 @@ export default function App() {
             setBooks(cleanBooks);
             try {
               localStorage.setItem('jwy_photobooks', JSON.stringify(cleanBooks));
-            } catch (e) {
-              console.warn(e);
+            } catch (_) {
+              try {
+                localStorage.removeItem('jwy_photobooks');
+              } catch (_) {}
             }
 
             if (typeof window !== 'undefined') {
@@ -397,8 +400,10 @@ export default function App() {
     setBooks(updated);
     try {
       localStorage.setItem('jwy_photobooks', JSON.stringify(updated));
-    } catch (e) {
-      console.warn('Failed to cache photobooks to localStorage:', e);
+    } catch (_) {
+      try {
+        localStorage.removeItem('jwy_photobooks');
+      } catch (_) {}
     }
   };
 
